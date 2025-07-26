@@ -44,18 +44,6 @@
             object-fit: cover;
         }
         
-        .pro-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 700;
-        }
-        
         .duration-badge {
             position: absolute;
             bottom: 8px;
@@ -94,17 +82,16 @@
         <!-- Hero Section -->
         <section class="pb-6 border-b border-white/10 mb-6">
             <h1 class="text-2xl font-bold mb-2">Free <span class="bg-gradient-to-r from-[#ec4899] to-[#a855f7] bg-clip-text text-transparent">NSFW</span> Videos</h1>
-            <p class="text-gray-400 text-sm">Sample our hottest content - upgrade for full access</p>
+            <p class="text-gray-400 text-sm">Enjoy our hottest content</p>
         </section>
 
         <!-- Video Grid -->
         <div class="grid grid-cols-1 gap-4">
             <!-- Video 1 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video1" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/xyz123.jpg" alt="Judy Nightclub Handjob">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">12:45</span>
                     </div>
                     <div class="p-2">
@@ -119,10 +106,9 @@
             
             <!-- Video 2 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video2" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/abc456.jpg" alt="Panam Doggystyle">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">18:32</span>
                     </div>
                     <div class="p-2">
@@ -137,10 +123,9 @@
             
             <!-- Video 3 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video3" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/def789.jpg" alt="Mother's Warmth">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">22:15</span>
                     </div>
                     <div class="p-2">
@@ -155,10 +140,9 @@
             
             <!-- Video 4 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video4" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/ghi012.jpg" alt="Nun vs Monster">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">15:47</span>
                     </div>
                     <div class="p-2">
@@ -173,10 +157,9 @@
             
             <!-- Video 5 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video5" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/jkl345.jpg" alt="Passionate Encounter">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">09:52</span>
                     </div>
                     <div class="p-2">
@@ -191,10 +174,9 @@
             
             <!-- Video 6 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video6" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/mno678.jpg" alt="Juicy Pussy Closeup">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">07:23</span>
                     </div>
                     <div class="p-2">
@@ -209,10 +191,9 @@
             
             <!-- Video 7 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video7" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/pqr901.jpg" alt="Tight Pussy Struggle">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">11:18</span>
                     </div>
                     <div class="p-2">
@@ -227,10 +208,9 @@
             
             <!-- Video 8 -->
             <div class="video-card">
-                <a href="#" class="block">
+                <a href="https://example.com/video8" class="block">
                     <div class="thumbnail">
                         <img src="https://i.imgur.com/stu234.jpg" alt="Perfect Boobs Showcase">
-                        <span class="pro-badge">PRO</span>
                         <span class="duration-badge">08:45</span>
                     </div>
                     <div class="p-2">
@@ -247,7 +227,7 @@
         <!-- Upgrade CTA -->
         <div class="mt-8 text-center">
             <a href="pro-access.html" class="btn-premium inline-flex items-center px-6 py-3 rounded-lg font-bold text-sm">
-                <i class="fas fa-crown mr-2"></i> UNLOCK 500+ VIDEOS - JOIN PRO NOW
+                <i class="fas fa-crown mr-2"></i> UNLOCK 500+ MORE VIDEOS - JOIN PRO NOW
             </a>
             <p class="text-gray-400 text-xs mt-2">Free trial available for new members</p>
         </div>
@@ -269,18 +249,12 @@
         </a>
     </nav>
 
-    <!-- Video Player Modal (Would be implemented with JS) -->
-    <div id="videoModal" class="hidden fixed inset-0 bg-black z-50">
-        <!-- Video player would go here -->
-    </div>
-
     <script>
-        // In a real implementation, this would handle video playback
+        // Video links will now open directly
         document.querySelectorAll('.video-card a').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                // This would open the modal with the selected video
-                alert('Premium video - upgrade to Pro to watch!');
+                // Links will now open the video URLs directly
+                // No paywall interception
             });
         });
     </script>
