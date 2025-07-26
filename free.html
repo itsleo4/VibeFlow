@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeFlow | Free Adult Videos Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4d8d;
+            --primary-dark: #ff1a75;
+            --dark: #0a0a0a;
+            --glass: rgba(20, 20, 20, 0.8);
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0a0a;
+            color: #f1f1f1;
+        }
+        
+        .nav-glass {
+            backdrop-filter: blur(12px);
+            background: var(--glass);
+            border-bottom: 1px solid rgba(255, 77, 141, 0.2);
+        }
+        
+        .logo-text {
+            background: linear-gradient(90deg, var(--primary), #cc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .video-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 77, 141, 0.2);
+        }
+        
+        .thumbnail-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+        }
+        
+        .pro-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, var(--primary), #cc00ff);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .glow-button {
+            box-shadow: 0 0 20px rgba(255, 77, 141, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(255, 77, 141, 0.7);
+        }
+        
+        .hero-section {
+            height: 80vh;
+            min-height: 600px;
+        }
+        
+        .gradient-border {
+            position: relative;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), #cc00ff);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Video grid styles */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .video-item {
+            transition: all 0.3s ease;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 77, 141, 0.2);
+        }
+        
+        .video-player-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-player-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 16px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .video-description {
+            color: #a1a1aa;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .video-meta {
+            display: flex;
+            align-items: center;
+            color: #a1a1aa;
+            font-size: 13px;
+        }
+        
+        .video-meta span {
+            margin-right: 12px;
+        }
+        
+        .video-meta i {
+            margin-right: 4px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .view-all {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .view-all i {
+            margin-left: 6px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Glass Navigation Bar -->
+    <header class="nav-glass sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="flex items-center">
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center mr-2">
+                        <i class="fas fa-play text-white text-sm"></i>
+                    </div>
+                    <span class="text-2xl font-bold logo-text">VibeFlow</span>
+                </a>
+                
+                <nav class="hidden lg:flex space-x-6">
+                    <a href="index.html" class="text-gray-400 hover:text-white font-medium transition">Home</a>
+                    <a href="free.html" class="text-white font-medium border-b-2 border-pink-500 pb-1">Free Videos</a>
+                    <a href="pro-access.html" class="text-gray-400 hover:text-white font-medium transition">Become Pro</a>
+                </nav>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="donate.html" class="hidden md:block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2.5 rounded-full font-medium glow-button">
+                    <i class="fas fa-heart mr-2"></i>Support Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="section-header">
+            <h1 class="section-title">Free Adult Videos Collection</h1>
+            <a href="pro-access.html" class="view-all">
+                Unlock Premium <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/ywzopLyZ8bT18Zo/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Judy Nightclub Handjob - Exclusive Scene</h2>
+                    <p class="video-description">Witness Judy's sensual nightclub experience with expert handjob skills</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 15K views</span>
+                        <span><i class="fas fa-clock"></i> 12:45</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 2 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/kwP1D90ZWmSOxP1/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Panam's Wild Doggystyle Session</h2>
+                    <p class="video-description">Full video of Panam getting pounded in intense doggystyle action</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 24K views</span>
+                        <span><i class="fas fa-clock"></i> 18:32</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 3 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/vVKyLj1AgPH4gdM/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Mother's Warmth: Chapter 2</h2>
+                    <p class="video-description">Steamy sequel with intense motherly affection and passion</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 35K views</span>
+                        <span><i class="fas fa-clock"></i> 22:15</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 4 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/jYJ4OQyxOZszB8d/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Sacrilegious Encounter: Nun vs Monster</h2>
+                    <p class="video-description">Holy vs unholy - watch the battle unfold in this intense scene</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 18K views</span>
+                        <span><i class="fas fa-clock"></i> 15:47</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 5 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/PbmRJkxkOvfR40/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Passionate Encounter: Hot Girl Gets Rough Fuck</h2>
+                    <p class="video-description">Intense fucking session with a gorgeous willing participant</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 42K views</span>
+                        <span><i class="fas fa-clock"></i> 09:52</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 6 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/mrd36jgkQlFbx8a/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Juicy Pussy Closeup: Wet & Ready</h2>
+                    <p class="video-description">Ultra HD closeup of a perfect pussy getting ready for action</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 28K views</span>
+                        <span><i class="fas fa-clock"></i> 07:23</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 7 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/mYLr0o1ZkYTbJLz/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Tight Pussy Struggle: Can't Take It All</h2>
+                    <p class="video-description">Watch as this tight pussy struggles to accommodate a massive cock</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 19K views</span>
+                        <span><i class="fas fa-clock"></i> 11:18</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 8 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/P69VrB1L7lF02jM/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Perfect Boobs Showcase: Jiggly & Natural</h2>
+                    <p class="video-description">Gorgeous natural tits bouncing in perfect rhythm</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 31K views</span>
+                        <span><i class="fas fa-clock"></i> 08:45</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 9 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/6jbpMwOlQbh93pj/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Cum Swallowing Queen: Every Last Drop</h2>
+                    <p class="video-description">Expert semen swallowing with no waste in this intense scene</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 27K views</span>
+                        <span><i class="fas fa-clock"></i> 05:37</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 10 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/G9rWaDRY0yf1vMZ/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Three Beauties and One Beast: Gangbang Fantasy</h2>
+                    <p class="video-description">Three gorgeous women share one massive cock in this fantasy scene</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 45K views</span>
+                        <span><i class="fas fa-clock"></i> 25:12</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 11 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/VxaXJovygdTZxP/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Double Trouble: Two Girls Share Monster Cock</h2>
+                    <p class="video-description">Two willing participants struggle to handle an enormous member</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 38K views</span>
+                        <span><i class="fas fa-clock"></i> 19:28</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 12 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/rJ3wVLVBbRUbJ9X/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Pink Pussy Special: Expert Blowjob Skills</h2>
+                    <p class="video-description">Perfect pink pussy demonstrates world-class oral techniques</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 22K views</span>
+                        <span><i class="fas fa-clock"></i> 14:05</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 13 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/jZVbaKoAmbtzRzo/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Professional Dick Sucking Session</h2>
+                    <p class="video-description">Watch as this expert takes cock worship to the next level</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 30K views</span>
+                        <span><i class="fas fa-clock"></i> 16:22</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 14 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/Pb917kvrLQC0zqL/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Gorgeous Beauty Ready to Serve</h2>
+                    <p class="video-description">Stunning woman demonstrates her oral skills with enthusiasm</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 25K views</span>
+                        <span><i class="fas fa-clock"></i> 10:15</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 15 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/0Zzp2OAgG6I0r4/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Intense Doggy Style Fucking</h2>
+                    <p class="video-description">Watch this bitch get pounded hard in classic doggy position</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 33K views</span>
+                        <span><i class="fas fa-clock"></i> 13:45</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 16 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/2DYXq1Qeb9TAX2/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Massive Cock Showcase</h2>
+                    <p class="video-description">Behold this giant member and how it's put to good use</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 27K views</span>
+                        <span><i class="fas fa-clock"></i> 08:30</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 17 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/1pe3Yo0pMPseqWl/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Giant Dildo Destruction</h2>
+                    <p class="video-description">Watch as this pussy gets destroyed by an enormous toy</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 36K views</span>
+                        <span><i class="fas fa-clock"></i> 14:18</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 18 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/WrlAXXvapBIbDkx/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Opportunistic Encounter</h2>
+                    <p class="video-description">She didn't let the chance miss in this spontaneous scene</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 21K views</span>
+                        <span><i class="fas fa-clock"></i> 09:52</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 19 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/owPJoQYvYbIJawz/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Ménage à Trois Fantasy</h2>
+                    <p class="video-description">One male and two beautiful bitches in perfect harmony</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 29K views</span>
+                        <span><i class="fas fa-clock"></i> 17:25</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 20 -->
+            <div class="video-item">
+                <div class="video-player-container">
+                    <iframe src="https://strtape.tech/e/wDJrq9bxgxSoe1/" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 class="video-title">Fantasy Foursome: 2 Elves & 1 Human</h2>
+                    <p class="video-description">Magical encounter between fantasy creatures and a human</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> 31K views</span>
+                        <span><i class="fas fa-clock"></i> 20:42</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="pro-access.html" class="inline-flex items-center bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full font-bold glow-button">
+                <i class="fas fa-crown mr-2"></i> Upgrade to Pro for More Content
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/80 py-12 border-t border-white/10 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 flex items-center">
+                        <span class="logo-text mr-2">VibeFlow</span>
+                    </h3>
+                    <p class="text-gray-400">Premium adult content platform.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="free.html" class="text-gray-400 hover:text-white">Free Videos</a></li>
+                        <li><a href="pro-access.html" class="text-gray-400 hover:text-white">Become Pro</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://t.me/+Xa9CQA1GNS43MDM1" target="_blank" class="text-gray-400 hover:text-white">Telegram</a></li>
+                        <li><a href="https://www.instagram.com/freakypremiumunlock" target="_blank" class="text-gray-400 hover:text-white">Instagram</a></li>
+                        <li><a href="https://whatsapp.com/channel/0029Vb6KSvMH5JM4M1uaBS0R" target="_blank" class="text-gray-400 hover:text-white">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white">Donate via UPI</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white">Donate via PayPal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2024 VibeFlow. All rights reserved. | <a href="#" class="hover:text-pink-400">Privacy</a> | <a href="#" class="hover:text-pink-400">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple fade-in animation for elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(el => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
